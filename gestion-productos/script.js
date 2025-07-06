@@ -5,6 +5,27 @@ document.getElementById('productForm').addEventListener('submit', function(e) {
     const productName = document.getElementById('productName').value;
     const productPrice = parseFloat(document.getElementById('productPrice').value);
     const productQuantity = parseInt(document.getElementById('productQuantity').value);
+    
+    if (!/^\d+$/.test(productId)) {
+        alert('El ID del producto debe contener solo números');
+        return;
+    }
+    
+    if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(productName)) {
+        alert('El nombre del producto solo puede contener letras y espacios');
+        return;
+    }
+    
+    if (isNaN(productPrice) || productPrice <= 0) {
+        alert('El precio debe ser un número mayor que 0');
+        return;
+    }
+    
+    if (isNaN(productQuantity) || productQuantity <= 0) {
+        alert('La cantidad debe ser un número entero mayor que 0');
+        return;
+    }
+    
     const subtotal = productPrice * productQuantity;
     
     const table = document.getElementById('productTable');
